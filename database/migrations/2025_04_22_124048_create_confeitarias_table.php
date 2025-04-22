@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('telefone')->nullable();
-            $table->string('endereco')->nullable();
             $table->string('cep')->nullable();
+            $table->string('rua')->nullable();
+            $table->string('numero')->nullable();
+            $table->string('complemento')->nullable();
             $table->string('bairro')->nullable();
             $table->string('cidade')->nullable();
             $table->string('estado')->nullable();
