@@ -44,7 +44,7 @@ class ProdutosController extends Controller
             'valor' => 'required|numeric',
             'descricao' => 'nullable|string',
             'confeitaria_id' => 'required|exists:confeitarias,id',
-            'imagens.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imagens.*' => 'image|mimes:jpeg,jpg|max:2048',
         ]);
 
         $produto = Produto::create([
