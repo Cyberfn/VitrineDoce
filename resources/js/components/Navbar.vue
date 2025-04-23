@@ -12,7 +12,7 @@
           </Link>
         </li>
         <li class="nav-item mx-3">
-          <Link class="nav-link text-white" :href="route('produtos.store')">
+          <Link class="nav-link text-white" :href="route('produtos.index')">
             <i class="bi bi-basket"></i> Produtos
           </Link>
         </li>
@@ -24,6 +24,11 @@
         <li class="nav-item mx-3">
           <Link class="nav-link text-white" :href="route('confeitarias.create')">
             <i class="bi bi-plus-circle"></i> Nova Confeitaria
+          </Link>
+        </li>
+        <li class="nav-item mx-3">
+          <Link class="nav-link text-white" :href="route('produtos.create')">
+            <i class="bi bi-plus-circle"></i> Novo Produto
           </Link>
         </li>
       </ul>
