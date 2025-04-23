@@ -6,14 +6,24 @@ use App\Models\Confeitaria;
 use App\Models\Produto;
 use App\Models\ProdutoImagem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Artisan;
 
 class ProdutosController extends Controller
 {
-
     public function index()
     {
-        $produtos = Produto::all();
+        $produtos = Produto::with('produto_imagens')->get();
+
+        $produtos = $produtos->map(function ($produto) {
+            $produto->produto_imagens->map(function ($imagem) {
+                $imagem->imagem = Storage::url($imagem->imagem);
+                return $imagem;
+            });
+            return $produto;
+        });
+
         return Inertia::render('Produtos/Index', [
             'produtos' => $produtos,
         ]);
@@ -52,6 +62,7 @@ class ProdutosController extends Controller
                     'produto_id' => $produto->id,
                 ]);
             }
+            Artisan::call('storage:link');
         }
 
         return redirect()->route('produtos.index')->with('success', 'Produto cadastrado com sucesso!');

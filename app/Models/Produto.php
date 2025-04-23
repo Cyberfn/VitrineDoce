@@ -21,7 +21,7 @@ class Produto extends Model
         return $this->belongsTo(Confeitaria::class);
     }
 
-    public function imagens()
+    public function produto_imagens()
     {
         return $this->hasMany(ProdutoImagem::class);
     }
