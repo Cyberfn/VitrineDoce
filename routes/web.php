@@ -23,13 +23,14 @@ Route::prefix('confeitarias')->name('confeitarias.')->group(function () {
     Route::get('/{id}', [ConfeitariasController::class, 'show'])->name('show');
     Route::get('/{id}/edit', [ConfeitariasController::class, 'edit'])->name('edit');
     Route::put('/{id}', [ConfeitariasController::class, 'update'])->name('update');
-    Route::put('/{id}/desativar', [ConfeitariasController::class, 'desativar'])->name('desativar'); 
+    Route::put('/{id}/desativar', [ConfeitariasController::class, 'desativar'])->name('desativar');
 });
 
 // Rotas de Produtos 
 Route::prefix('produtos')->name('produtos.')->group(function () {
-    Route::get('/create/{confeitaria_id}', [ProdutosController::class, 'create'])->name('create');
-    Route::get('/', [ProdutosController::class, 'store'])->name('store');
+    Route::get('/', [ProdutosController::class, 'index'])->name('index');
+    Route::get('/create', [ProdutosController::class, 'create'])->name('create');
+    Route::post('/', [ProdutosController::class, 'store'])->name('store');
     Route::get('/{id}/edit', [ProdutosController::class, 'edit'])->name('edit');
     Route::put('/{id}', [ProdutosController::class, 'update'])->name('update');
     Route::put('/{id}/desativar', [ProdutosController::class, 'desativar'])->name('desativar');

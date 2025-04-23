@@ -57,13 +57,13 @@ function submit() {
 
                 <div class="md:col-span-2">
                     <label class="mb-1 block font-semibold">Descrição</label>
-                    <textarea v-model="form.descricao" class="w-full rounded border p-2" rows="3" required></textarea>
+                    <textarea v-model="form.descricao" class="w-full rounded border p-2" rows="3" style="resize: none" required></textarea>
                 </div>
 
                 <div class="md:col-span-2">
                     <label class="mb-1 block font-semibold">Imagens</label>
-                    <input type="file" class="w-full rounded border p-2" multiple accept="image/*" @change="get_imagens_input" />
-                    <div v-if="preview_urls.length" class="mt-4 flex flex-wrap gap-4" required>
+                    <input type="file" class="w-full rounded border p-2" multiple @change="get_imagens_input" accept=".jpg, .jpeg, image/jpeg" required/>
+                    <div v-if="preview_urls.length" class="mt-4 flex flex-wrap gap-4">
                         <div v-for="(url, index) in preview_urls" :key="index" class="relative">
                             <img :src="url" class="h-24 rounded shadow" />
                             <button
