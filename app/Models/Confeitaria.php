@@ -14,6 +14,7 @@ class Confeitaria extends Model
         'cep',
         'rua',
         'numero',
+        "complemento",
         'bairro',
         'estado',
         'cidade',
