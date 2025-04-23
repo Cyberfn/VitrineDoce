@@ -16,7 +16,6 @@ const confeitarias = computed(() => props.confeitarias ?? []);
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ confeitaria.nome }}</h5>
-                            <p class="card-text">{{ confeitaria.descricao }}</p>
                         </div>
                     </div>
                 </div>
