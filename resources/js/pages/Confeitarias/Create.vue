@@ -16,7 +16,6 @@ const form = ref({
     latitude: '',
     longitude: '',
 });
-
 watch(
     () => form.value.cep,
     (newCep) => {
@@ -25,8 +24,7 @@ watch(
             buscar_cep(cep);
         }
     },
-);
-
+); 
 function buscar_cep(cep: string) {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
         .then((res) => res.json())
@@ -61,12 +59,8 @@ const submit = () => {
         onSuccess: () => {
             alert('Confeitaria cadastrada com sucesso!');
         },
-        onError: (errors) => {
-            let mensagem = 'Erro ao cadastrar. Verifique os campos.';
-            if (errors && Object.keys(errors).length > 0) {
-                mensagem = Object.values(errors).join('\n');
-            }
-            alert(mensagem);
+        onError: () => {
+            alert('Erro ao cadastrar. Verifique os campos.');
         },
     });
 };
