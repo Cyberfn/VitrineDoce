@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { Inertia } from '@inertiajs/inertia';
 
 const props = defineProps<{
     confeitaria: any;
