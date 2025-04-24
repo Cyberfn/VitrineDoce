@@ -16,18 +16,14 @@ const imagens_removidas = ref<number[]>([]);
 watch(
     () => props.produto,
     (novoProduto) => {
-        console.log('Novo produto recebido:', novoProduto); // 👀
         produto_edicao.value = { ...novoProduto };
     },
     { immediate: true },
 );
 
 const nome_confeitaria = computed(() => {
-    const confeitaria = props.confeitarias.find((c) => c.id === produto_edicao.value.confeitaria_id);
-    return confeitaria ? confeitaria.nome : 'Confeitaria não encontrada';
+    return produto_edicao.value.confeitaria ? produto_edicao.value.confeitaria.nome : '';
 });
-
-console.log('Confeitarias recebidas:', props.confeitarias);
 
 function habilitar_edicao() {
     modo_edicao.value = true;
@@ -128,6 +124,10 @@ function excluir_produto() {
                         <label class="form-label">Valor</label>
                         <input type="number" class="form-control" v-model="produto_edicao.valor" :disabled="!modo_edicao" />
                     </div>
+
+                    <p class="card-text">
+                        Confeitaria: <span class="fw-bold">{{ nome_confeitaria }}</span>
+                    </p>
                 </div>
 
                 <div class="modal-footer">

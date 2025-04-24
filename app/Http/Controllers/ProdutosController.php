@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Artisan;
 class ProdutosController extends Controller
 {
     public function index()
-    {
-        $produtos = Produto::with('produto_imagens')->get();
+    {   
+    $produtos = Produto::with('produto_imagens', 'confeitaria')->get();
 
         $produtos = $produtos->map(function ($produto) {
             $produto->produto_imagens->map(function ($imagem) {
