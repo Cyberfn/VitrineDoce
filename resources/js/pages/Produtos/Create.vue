@@ -3,10 +3,6 @@ import Navbar from '@/components/Navbar.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-const props = defineProps({
-    confeitarias: Array,
-});
-
 const form = useForm({
     nome: '',
     valor: '',
