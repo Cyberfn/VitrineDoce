@@ -36,7 +36,7 @@ O projeto segue a arquitetura padrão Laravel + Inertia.js:
 
 ### 1. Clone o projeto
 ```bash
-git clone https://github.com/seuusuario/VitrineDoce.git
+git clone https://github.com/Cyberfn/VitrineDoce.git
 cd VitrineDoce
 ```
 
