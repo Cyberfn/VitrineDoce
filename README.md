@@ -66,6 +66,14 @@ php artisan key:generate
 php artisan migrate
 ```
 
+### 🌱 Executando a Seeder
+
+Se você desejar popular a tabela de **confeitarias** com dados fictícios para fins de teste ou desenvolvimento, execute a seeder utilizando o seguinte comando:
+
+```bash
+php artisan db:seed --class=ConfeitariasSeeder
+```
+
 ### 7. Inicie os servidores
 - Backend:
   ```bash
