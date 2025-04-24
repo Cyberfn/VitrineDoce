@@ -41,4 +41,41 @@ class ConfeitariasController extends Controller
 
         return redirect('/')->with('success', 'Confeitaria cadastrada com sucesso!');
     }
+
+    public function update(Request $request, int $id)
+    {
+        $confeitaria = Confeitaria::findOrFail($id);
+
+        $validated = $request->validate([
+            'nome' => 'required|string',
+            'descricao' => 'nullable|string',
+            'endereco' => 'nullable|string',
+            'telefone' => 'nullable|string',
+            'cep' => 'nullable|string',
+            'rua' => 'nullable|string',
+            'numero' => 'nullable|string',
+            'complemento' => 'nullable|string',
+            'bairro' => 'nullable|string',
+            'cidade' => 'nullable|string',
+            'estado' => 'nullable|string',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+        ]);
+
+        $confeitaria->update($validated);
+
+        return redirect()->back()->with('success', 'Confeitaria atualizada com sucesso!');
+    }
+
+    public function excluir($id)
+    {
+
+        $confeitaria = Confeitaria::findOrFail($id);
+
+        $confeitaria->produtos()->delete();
+
+        $confeitaria->delete();
+
+        return redirect('/')->with('success', 'Confeitaria Deletada com sucesso!');
+    }
 }
