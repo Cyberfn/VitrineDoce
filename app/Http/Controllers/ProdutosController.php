@@ -67,4 +67,41 @@ class ProdutosController extends Controller
 
         return redirect()->route('produtos.index')->with('success', 'Produto cadastrado com sucesso!');
     }
+
+    public function update(Request $request, int $id)
+    {
+        $produto = Produto::findOrFail($id);
+
+        $validated = $request->validate([
+            'nome' => 'required|string',
+            'valor' => 'required|numeric',
+            'descricao' => 'nullable|string',
+            'novas_imagens.*' => 'image|mimes:jpeg,jpg,png|max:2048',
+            'imagens_removidas' => 'nullable|array',
+            'imagens_removidas.*' => 'integer|exists:produto_imagens,id',
+            'confeitaria_id' => 'required|exists:confeitarias,id',
+        ]);
+
+        $produto->update([
+            'nome' => $validated['nome'],
+            'valor' => $validated['valor'],
+            'descricao' => $validated['descricao'],
+            'confeitaria_id' => $validated['confeitaria_id'],
+        ]);
+
+        if (!empty($validated['imagens_removidas'])) {
+            ProdutoImagem::whereIn('id', $validated['imagens_removidas'])->delete();
+        }
+
+        if ($request->hasFile('novas_imagens')) {
+            foreach ($request->file('novas_imagens') as $imagem) {
+                $path = $imagem->store('produtos', 'public');
+                $produto->produto_imagens()->create([
+                    'imagem' => $path
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Produto atualizado com sucesso!');
+    }
 }
