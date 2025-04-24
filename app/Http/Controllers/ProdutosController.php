@@ -104,4 +104,18 @@ class ProdutosController extends Controller
 
         return redirect()->back()->with('success', 'Produto atualizado com sucesso!');
     }
+
+    public function excluir($id)
+{
+    $produto = Produto::with('produto_imagens')->findOrFail($id);
+
+    foreach ($produto->produto_imagens as $imagem) {
+        Storage::disk('public')->delete($imagem->imagem);
+    }
+
+    $produto->produto_imagens()->delete();
+    $produto->delete();
+
+    return redirect()->route('produtos.index')->with('success', 'Produto excluído com sucesso!');
+}
 }
