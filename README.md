@@ -1,5 +1,5 @@
 
-# 📦 VitrineDoceMarket
+# 📦 VitrineDoce
 
 Projeto desenvolvido como desafio técnico para estágio PHP/Laravel na Engeselt Softwares. Trata-se de um marketplace para confeitarias, utilizando Laravel no backend, Vue 3 com Inertia.js no frontend, e PostgreSQL como banco de dados. A visualização das confeitarias no mapa é feita com **Leaflet.js**.
 
@@ -36,8 +36,8 @@ O projeto segue a arquitetura padrão Laravel + Inertia.js:
 
 ### 1. Clone o projeto
 ```bash
-git clone https://github.com/seuusuario/VitrineDoceMarket.git
-cd VitrineDoceMarket
+git clone https://github.com/seuusuario/VitrineDoce.git
+cd VitrineDoce
 ```
 
 ### 2. Instale as dependências do backend
