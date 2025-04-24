@@ -33,6 +33,12 @@ function remove_image(index) {
 function submit() {
     form.post(route('produtos.store'), {
         forceFormData: true,
+        onSuccess: () => {
+            alert('Produto cadastrado com sucesso!');
+        },
+        onError: () => {
+            alert('Erro ao cadastrar. Verifique os campos.');
+        },
     });
 }
 </script>
