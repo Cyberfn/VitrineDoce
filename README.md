@@ -61,7 +61,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-### 6. Execute as migrations (e seeders, se houver)
+### 6. Execute as migrations
 ```bash
 php artisan migrate
 ```
@@ -75,14 +75,6 @@ php artisan migrate
   ```bash
   npm run dev
   ```
-
----
-
-## 🧪 Testes Automatizados (opcional)
-Se implementados:
-```bash
-php artisan test
-```
 
 ---
 
