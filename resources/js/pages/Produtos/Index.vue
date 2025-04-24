@@ -1,11 +1,50 @@
 <script setup lang="ts">
 import Navbar from '@/components/Navbar.vue';
-import { usePage } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import ProdutoModal from '@/components/ProdutoModal.vue';
+import { router, usePage } from '@inertiajs/vue3';
+import { computed, ref } from 'vue';
 
 const props = usePage().props;
 const produtos = computed(() => props.produtos ?? []);
-console.log(produtos.value);
+const produto_selecionado = ref(null);
+const mostrar_modal = ref(false);
+
+function abrir_modal(produto: any) {
+    produto_selecionado.value = { ...produto };
+    mostrar_modal.value = true;
+}
+
+function salvar_produto({ id, form }: any) {
+    router.post(`/produtos/${id}`, form, {
+        preserveScroll: true,
+        onSuccess: () => {
+            fechar_modal();
+        },
+        onError: (errors) => {
+            console.error('Erros ao salvar produto:', errors);
+        },
+    });
+    location.reload();
+}
+
+function excluir_produto(produtoId: number) {
+    if (confirm('Tem certeza que deseja excluir este produto?')) {
+        router.delete(`/produtos/${produtoId}`, {
+            preserveScroll: true,
+            onSuccess: () => {
+                fechar_modal();
+            },
+            onError: (errors) => {
+                console.error('Erro ao excluir produto:', errors);
+            },
+        });
+    }
+    location.reload();
+}
+
+function fechar_modal() {
+    mostrar_modal.value = false;
+}
 </script>
 
 <template>
@@ -65,12 +104,22 @@ console.log(produtos.value);
                             <p class="card-text fw-bold mt-auto">
                                 Preço: R$ {{ produto.valor ? parseFloat(produto.valor).toFixed(2) : 'Indisponível' }}
                             </p>
-                            <a :href="'/produto/' + produto.id" class="btn btn-primary mt-2 w-100">Ver mais</a>
+                            <button @click="abrir_modal(produto)" class="btn btn-primary mt-2 w-100">Ver mais</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <ProdutoModal
+            v-if="mostrar_modal"
+            :produto="produto_selecionado"
+            :mostrar="mostrar_modal"
+            :confeitarias="confeitarias"
+            @fechar="fechar_modal"
+            @salvar="salvar_produto"
+            @excluir="excluir_produto"
+        />
     </div>
 </template>
 
