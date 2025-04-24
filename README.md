@@ -61,9 +61,17 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-### 6. Execute as migrations (e seeders, se houver)
+### 6. Execute as migrations
 ```bash
 php artisan migrate
+```
+
+### 🌱 Executando a Seeder
+
+Se você desejar popular a tabela de **confeitarias** com dados fictícios para fins de teste ou desenvolvimento, execute a seeder utilizando o seguinte comando:
+
+```bash
+php artisan db:seed --class=ConfeitariasSeeder
 ```
 
 ### 7. Inicie os servidores
