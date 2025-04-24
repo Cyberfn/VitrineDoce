@@ -78,14 +78,6 @@ php artisan migrate
 
 ---
 
-## 🧪 Testes Automatizados (opcional)
-Se implementados:
-```bash
-php artisan test
-```
-
----
-
 ## ✅ Funcionalidades
 
 - Cadastro, edição e exclusão de confeitarias
