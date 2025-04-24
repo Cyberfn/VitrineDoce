@@ -57,17 +57,18 @@ function fechar_modal() {
                     <div class="card h-100 shadow">
                         <div :id="'carousel_' + produto.id" class="carousel slide produto-carousel" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                <div
-                                    v-if="(produto.produto_imagens || []).length > 0"
-                                    v-for="(imagem, index) in produto.produto_imagens"
-                                    :key="index"
-                                    class="carousel-item"
-                                    :class="{ active: index === 0 }"
-                                >
-                                    <div class="imagem-wrapper">
-                                        <img :src="imagem.imagem" class="imagem-ajustada" alt="Imagem do produto" />
+                                <template v-if="(produto.produto_imagens || []).length > 0">
+                                    <div
+                                        v-for="(imagem, index) in produto.produto_imagens"
+                                        :key="index"
+                                        class="carousel-item"
+                                        :class="{ active: index === 0 }"
+                                    >
+                                        <div class="imagem-wrapper">
+                                            <img :src="imagem.imagem" class="imagem-ajustada" alt="Imagem do produto" />
+                                        </div>
                                     </div>
-                                </div>
+                                </template>
                                 <div v-else class="carousel-item active">
                                     <div class="imagem-wrapper">
                                         <i class="bi bi-image-alt" style="font-size: 50px; color: #ddd"></i>
