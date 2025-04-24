@@ -26,12 +26,12 @@ Route::prefix('confeitarias')->name('confeitarias.')->group(function () {
     Route::put('/{id}/desativar', [ConfeitariasController::class, 'desativar'])->name('desativar');
 });
 
-// Rotas de Produtos 
+// Rotas de Produtos
 Route::prefix('produtos')->name('produtos.')->group(function () {
-    Route::get('/', [ProdutosController::class, 'index'])->name('index');
-    Route::get('/create', [ProdutosController::class, 'create'])->name('create');
-    Route::post('/', [ProdutosController::class, 'store'])->name('store');
-    Route::get('/{id}/edit', [ProdutosController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [ProdutosController::class, 'update'])->name('update');
-    Route::put('/{id}/desativar', [ProdutosController::class, 'desativar'])->name('desativar');
+    Route::get('/', [ProdutosController::class, 'index'])->name('index');        // Rota para listar todos os produtos
+    Route::get('/create', [ProdutosController::class, 'create'])->name('create'); // Rota para exibir o formulário de criação de novo produto
+    Route::post('/', [ProdutosController::class, 'store'])->name('store');        // Rota para salvar um novo produto no banco de dados
+    Route::get('/{id}/edit', [ProdutosController::class, 'edit'])->name('edit');  // Rota para exibir o formulário de edição de um produto existente
+    Route::put('/{id}', [ProdutosController::class, 'update'])->name('update');   // Rota para atualizar um produto existente
+    Route::delete('/{id}', [ProdutosController::class, 'excluir'])->name('excluir'); // Rota para excluir um produto
 });
