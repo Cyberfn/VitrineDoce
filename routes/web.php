@@ -17,21 +17,18 @@ Route::get('/mapa', function () {
 
 // Rotas de Confeitarias
 Route::prefix('confeitarias')->name('confeitarias.')->group(function () {
-    Route::get('/', [ConfeitariasController::class, 'index'])->name('index');
-    Route::get('/create', [ConfeitariasController::class, 'create'])->name('create');
-    Route::post('/', [ConfeitariasController::class, 'store'])->name('store');
-    Route::get('/{id}', [ConfeitariasController::class, 'show'])->name('show');
-    Route::get('/{id}/edit', [ConfeitariasController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [ConfeitariasController::class, 'update'])->name('update');
-    Route::put('/{id}/desativar', [ConfeitariasController::class, 'desativar'])->name('desativar');
+    Route::get('/', [ConfeitariasController::class, 'index'])->name('index');         // Listar todas as confeitarias
+    Route::get('/create', [ConfeitariasController::class, 'create'])->name('create'); // Formulário de criação
+    Route::post('/', [ConfeitariasController::class, 'store'])->name('store');        // Salvar nova confeitaria
+    Route::put('/{id}', [ConfeitariasController::class, 'update'])->name('update');   // Atualizar confeitaria existente
+    Route::delete('/{id}', [ConfeitariasController::class, 'excluir'])->name('destroy'); // Excluir confeitaria
 });
 
 // Rotas de Produtos
 Route::prefix('produtos')->name('produtos.')->group(function () {
     Route::get('/', [ProdutosController::class, 'index'])->name('index');        // Rota para listar todos os produtos
     Route::get('/create', [ProdutosController::class, 'create'])->name('create'); // Rota para exibir o formulário de criação de novo produto
-    Route::post('/', [ProdutosController::class, 'store'])->name('store');        // Rota para salvar um novo produto no banco de dados
-    Route::get('/{id}/edit', [ProdutosController::class, 'edit'])->name('edit');  // Rota para exibir o formulário de edição de um produto existente
+    Route::post('/', [ProdutosController::class, 'store'])->name('store');        // Rota para salvar um novo produto no banco de dados  // Rota para exibir o formulário de edição de um produto existente
     Route::put('/{id}', [ProdutosController::class, 'update'])->name('update');   // Rota para atualizar um produto existente
     Route::delete('/{id}', [ProdutosController::class, 'excluir'])->name('excluir'); // Rota para excluir um produto
 });
