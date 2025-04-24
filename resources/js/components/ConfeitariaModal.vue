@@ -105,11 +105,24 @@ function buscar_cep(cep: string) {
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Telefone</label>
-                            <input class="form-control" v-model="confeitaria_edicao.telefone" :disabled="!modo_edicao" required />
+                            <input
+                                class="form-control"
+                                v-model="confeitaria_edicao.telefone"
+                                :disabled="!modo_edicao"
+                                v-mask="confeitaria_edicao.telefone.replace(/\D/g, '').length > 10 ? '(##) #####-####' : '(##) ####-####'"
+                                required
+                            />
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">CEP</label>
-                            <input class="form-control" v-model="confeitaria_edicao.cep" :disabled="!modo_edicao" maxlength="8" @input="confeitaria_edicao.cep = confeitaria_edicao.cep.replace(/\D/g, '').slice(0, 8)" required />
+                            <input
+                                class="form-control"
+                                v-model="confeitaria_edicao.telefone"
+                                :disabled="!modo_edicao"
+                                maxlength="10"
+                                @input="confeitaria_edicao.telefone = confeitaria_edicao.telefone.replace(/\D/g, '').slice(0, 10)"
+                                required
+                            />
                         </div>
                     </div>
 

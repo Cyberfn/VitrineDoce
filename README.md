@@ -50,18 +50,30 @@ composer install
 npm install
 ```
 
-### 4. Configure o ambiente
+### 4. Dependências adicionais
+Certifique-se de ter as seguintes dependências instaladas em sua máquina:
+
+- **PHP** `^8.2`
+- **Composer** (para gerenciar dependências PHP)
+- **Node.js** (recomendado >= 18)
+- **npm** (para gerenciar dependências frontend)
+
+Se você não tiver o **Node.js** ou o **Composer** instalados, siga as instruções de instalação em seus sites oficiais:
+- [Node.js](https://nodejs.org/)
+- [Composer](https://getcomposer.org/)
+
+### 5. Configure o ambiente
 Copie o `.env.example` para `.env` e ajuste as variáveis do banco e outros detalhes:
 ```bash
 cp .env.example .env
 ```
 
-### 5. Gere a chave da aplicação
+### 6. Gere a chave da aplicação
 ```bash
 php artisan key:generate
 ```
 
-### 6. Execute as migrations
+### 7. Execute as migrations
 ```bash
 php artisan migrate
 ```
@@ -74,7 +86,7 @@ Se você desejar popular a tabela de **confeitarias** com dados fictícios para 
 php artisan db:seed --class=ConfeitariasSeeder
 ```
 
-### 7. Inicie os servidores
+### 8. Inicie os servidores
 - Backend:
   ```bash
   php artisan serve

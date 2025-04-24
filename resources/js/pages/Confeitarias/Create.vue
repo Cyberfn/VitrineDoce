@@ -81,13 +81,28 @@ const submit = () => {
 
                 <div>
                     <label class="mb-1 block font-semibold">Telefone</label>
-                    <input v-model="form.telefone" type="text" class="w-full rounded border p-2" required />
+                    <input
+                        v-model="form.telefone"
+                        type="text"
+                        class="w-full rounded border p-2"
+                        maxlength="10"
+                        @input="form.telefone = form.telefone.replace(/\D/g, '').slice(0, 10)"
+                        required
+                    />
                 </div>
 
                 <div>
                     <label class="mb-1 block font-semibold">CEP</label>
                     <div class="flex items-center gap-2">
-                        <input v-model="form.cep" type="text" placeholder="CEP" class="w-full rounded border p-2" maxlength="8" @input="form.cep = form.cep.replace(/\D/g, '').slice(0, 8)" required />
+                        <input
+                            v-model="form.cep"
+                            type="text"
+                            placeholder="CEP"
+                            class="w-full rounded border p-2"
+                            maxlength="8"
+                            @input="form.cep = form.cep.replace(/\D/g, '').slice(0, 8)"
+                            required
+                        />
                         <button type="button" @click="buscar_cepManual" class="rounded bg-gray-300 px-3 py-2 hover:bg-gray-400">
                             <i class="bi bi-search"></i>
                         </button>
