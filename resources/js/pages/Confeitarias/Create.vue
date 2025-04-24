@@ -24,7 +24,7 @@ watch(
             buscar_cep(cep);
         }
     },
-); 
+);
 function buscar_cep(cep: string) {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
         .then((res) => res.json())
@@ -76,18 +76,18 @@ const submit = () => {
             <form @submit.prevent="submit" class="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
                     <label class="mb-1 block font-semibold">Nome da Confeitaria</label>
-                    <input v-model="form.nome" type="text" class="w-full rounded border p-2"  required/>
+                    <input v-model="form.nome" type="text" class="w-full rounded border p-2" required />
                 </div>
 
                 <div>
                     <label class="mb-1 block font-semibold">Telefone</label>
-                    <input v-model="form.telefone" type="text" class="w-full rounded border p-2" required/>
+                    <input v-model="form.telefone" type="text" class="w-full rounded border p-2" required />
                 </div>
 
                 <div>
                     <label class="mb-1 block font-semibold">CEP</label>
                     <div class="flex items-center gap-2">
-                        <input v-model="form.cep" type="text" placeholder="CEP" class="w-full rounded border p-2" required/>
+                        <input v-model="form.cep" type="text" placeholder="CEP" class="w-full rounded border p-2" maxlength="8" @input="form.cep = form.cep.replace(/\D/g, '').slice(0, 8)" required />
                         <button type="button" @click="buscar_cepManual" class="rounded bg-gray-300 px-3 py-2 hover:bg-gray-400">
                             <i class="bi bi-search"></i>
                         </button>
@@ -96,38 +96,38 @@ const submit = () => {
 
                 <div>
                     <label class="mb-1 block font-semibold">Rua</label>
-                    <input v-model="form.rua" type="text" class="w-full rounded border p-2" required/>
+                    <input v-model="form.rua" type="text" class="w-full rounded border p-2" required />
                 </div>
 
                 <div>
                     <label class="mb-1 block font-semibold">Complemento</label>
-                    <input v-model="form.complemento" type="text" class="w-full rounded border p-2"/>
+                    <input v-model="form.complemento" type="text" class="w-full rounded border p-2" />
                 </div>
 
                 <div>
                     <label class="mb-1 block font-semibold">Bairro</label>
-                    <input v-model="form.bairro" type="text" class="w-full rounded border p-2" required/>
+                    <input v-model="form.bairro" type="text" class="w-full rounded border p-2" required />
                 </div>
 
                 <div>
                     <label class="mb-1 block font-semibold">Cidade</label>
-                    <input v-model="form.cidade" type="text" class="w-full rounded border p-2" required/>
+                    <input v-model="form.cidade" type="text" class="w-full rounded border p-2" required />
                 </div>
 
                 <div class="flex gap-4">
                     <div class="flex flex-col">
                         <label class="mb-1 block font-semibold">Número</label>
-                        <input v-model="form.numero" type="text" placeholder="Número" class="w-32 rounded border p-2" required/>
+                        <input v-model="form.numero" type="text" placeholder="Número" class="w-32 rounded border p-2" required />
                     </div>
 
                     <div class="flex flex-col">
                         <label class="mb-1 block font-semibold">UF</label>
-                        <input v-model="form.estado" type="text" placeholder="UF" class="w-20 rounded border p-2 uppercase" maxlength="2" required/>
+                        <input v-model="form.estado" type="text" placeholder="UF" class="w-20 rounded border p-2 uppercase" maxlength="2" required />
                     </div>
                 </div>
 
-                <input hidden v-model="form.latitude" type="text" required/>
-                <input hidden v-model="form.longitude" type="text" required/>
+                <input hidden v-model="form.latitude" type="text" required />
+                <input hidden v-model="form.longitude" type="text" required />
 
                 <div class="col-span-full mt-4 text-center">
                     <button type="submit" class="rounded-xl bg-pink-500 px-6 py-2 text-white transition hover:bg-pink-600">Cadastrar</button>

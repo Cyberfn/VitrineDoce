@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { Inertia } from '@inertiajs/inertia';
 
 const props = defineProps<{
     confeitaria: any;
@@ -12,13 +11,12 @@ const emit = defineEmits(['fechar', 'salvar', 'excluir']);
 const confeitaria_edicao = ref({ ...props.confeitaria });
 const modo_edicao = ref(false);
 
-
 watch(
     () => props.confeitaria,
     (nova) => {
         confeitaria_edicao.value = { ...nova };
     },
-    { immediate: true }
+    { immediate: true },
 );
 
 watch(
@@ -27,7 +25,7 @@ watch(
         if (novo_cep && novo_cep.length === 8) {
             buscar_cep(novo_cep);
         }
-    }
+    },
 );
 
 function habilitar_edicao() {
@@ -63,7 +61,6 @@ function excluir_confeitaria() {
     modo_edicao.value = false;
     emit('fechar');
 }
-
 
 function buscar_cep(cep: string) {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -101,51 +98,51 @@ function buscar_cep(cep: string) {
                     <div class="row mb-3">
                         <div class="col-md">
                             <label class="form-label">Nome</label>
-                            <input class="form-control" v-model="confeitaria_edicao.nome" :disabled="!modo_edicao" required/>
+                            <input class="form-control" v-model="confeitaria_edicao.nome" :disabled="!modo_edicao" required />
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Telefone</label>
-                            <input class="form-control" v-model="confeitaria_edicao.telefone" :disabled="!modo_edicao" required/>
+                            <input class="form-control" v-model="confeitaria_edicao.telefone" :disabled="!modo_edicao" required />
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">CEP</label>
-                            <input class="form-control" v-model="confeitaria_edicao.cep" :disabled="!modo_edicao" required/>
+                            <input class="form-control" v-model="confeitaria_edicao.cep" :disabled="!modo_edicao" maxlength="8" @input="confeitaria_edicao.cep = confeitaria_edicao.cep.replace(/\D/g, '').slice(0, 8)" required />
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Rua</label>
-                            <input class="form-control" v-model="confeitaria_edicao.rua" :disabled="!modo_edicao" required/>
+                            <input class="form-control" v-model="confeitaria_edicao.rua" :disabled="!modo_edicao" required />
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Número</label>
-                            <input class="form-control" v-model="confeitaria_edicao.numero" :disabled="!modo_edicao" required/>
+                            <input class="form-control" v-model="confeitaria_edicao.numero" :disabled="!modo_edicao" required />
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Complemento</label>
-                            <input class="form-control" v-model="confeitaria_edicao.complemento" :disabled="!modo_edicao" required/>
+                            <input class="form-control" v-model="confeitaria_edicao.complemento" :disabled="!modo_edicao" required />
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Bairro</label>
-                            <input class="form-control" v-model="confeitaria_edicao.bairro" :disabled="!modo_edicao" required/>
+                            <input class="form-control" v-model="confeitaria_edicao.bairro" :disabled="!modo_edicao" required />
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Cidade</label>
-                            <input class="form-control" v-model="confeitaria_edicao.cidade" :disabled="!modo_edicao" required/>
+                            <input class="form-control" v-model="confeitaria_edicao.cidade" :disabled="!modo_edicao" required />
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Estado</label>
-                            <input class="form-control" v-model="confeitaria_edicao.estado" :disabled="!modo_edicao" required/>
+                            <input class="form-control" v-model="confeitaria_edicao.estado" :disabled="!modo_edicao" required />
                         </div>
                     </div>
                 </div>
