@@ -82,19 +82,36 @@ function fechar_modal() {
                                 type="button"
                                 :data-bs-target="'#carousel_' + produto.id"
                                 data-bs-slide="prev"
+                                style="
+                                    background-color: transparent;
+                                    border: none;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    color: black;
+                                    font-size: 30px;
+                                "
                             >
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Anterior</span>
+                                &lt;
                             </button>
+
                             <button
                                 v-if="(produto.produto_imagens || []).length > 1"
                                 class="carousel-control-next"
                                 type="button"
                                 :data-bs-target="'#carousel_' + produto.id"
                                 data-bs-slide="next"
+                                style="
+                                    background-color: transparent;
+                                    border: none;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    color: black;
+                                    font-size: 30px;
+                                "
                             >
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Próximo</span>
+                                &gt;
                             </button>
                         </div>
 
