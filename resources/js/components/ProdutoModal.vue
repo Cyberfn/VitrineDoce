@@ -33,12 +33,14 @@ function adicionar_imagem(event: Event) {
     const input = event.target as HTMLInputElement;
     const files = input.files;
     if (files && files.length > 0) {
-        novas_imagens.value.push(files[0]);
+        Array.from(files).forEach((file) => {
+            novas_imagens.value.push(file);
 
-        if (!produto_edicao.value.produto_imagens) {
-            produto_edicao.value.produto_imagens = [];
-        }
-        produto_edicao.value.produto_imagens.push({ imagem: URL.createObjectURL(files[0]) });
+            if (!produto_edicao.value.produto_imagens) {
+                produto_edicao.value.produto_imagens = [];
+            }
+            produto_edicao.value.produto_imagens.push({ imagem: URL.createObjectURL(file) });
+        });
     }
 }
 
@@ -115,10 +117,11 @@ function excluir_produto() {
                                     @click="remover_imagem(index, img)"
                                 ></button>
                             </div>
+
                             <div v-if="modo_edicao" class="d-flex align-items-center">
                                 <label class="btn btn-sm btn-outline-secondary">
                                     + Adicionar imagem
-                                    <input type="file" hidden @change="adicionar_imagem" />
+                                    <input type="file" hidden @change="adicionar_imagem" multiple />
                                 </label>
                             </div>
                         </div>
