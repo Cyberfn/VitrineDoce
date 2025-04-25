@@ -33,12 +33,14 @@ function adicionar_imagem(event: Event) {
     const input = event.target as HTMLInputElement;
     const files = input.files;
     if (files && files.length > 0) {
-        novas_imagens.value.push(files[0]);
+        Array.from(files).forEach((file) => {
+            novas_imagens.value.push(file);
 
-        if (!produto_edicao.value.produto_imagens) {
-            produto_edicao.value.produto_imagens = [];
-        }
-        produto_edicao.value.produto_imagens.push({ imagem: URL.createObjectURL(files[0]) });
+            if (!produto_edicao.value.produto_imagens) {
+                produto_edicao.value.produto_imagens = [];
+            }
+            produto_edicao.value.produto_imagens.push({ imagem: URL.createObjectURL(file) });
+        });
     }
 }
 
@@ -50,6 +52,18 @@ function remover_imagem(index: number, imagem: any) {
 }
 
 function salvar_alteracoes() {
+    const valor_num = parseFloat(produto_edicao.value.valor.toString());
+
+    if (isNaN(valor_num) || valor_num <= 0) {
+        alert('O valor do produto deve ser maior que zero.');
+        return;
+    }
+
+    if (valor_num > 99999.99) {
+        alert('O valor do produto é muito alto. Máximo permitido: R$99.999,99.');
+        return;
+    }
+
     const form = new FormData();
     form.append('nome', produto_edicao.value.nome);
     form.append('descricao', produto_edicao.value.descricao ?? '');
@@ -103,10 +117,11 @@ function excluir_produto() {
                                     @click="remover_imagem(index, img)"
                                 ></button>
                             </div>
+
                             <div v-if="modo_edicao" class="d-flex align-items-center">
                                 <label class="btn btn-sm btn-outline-secondary">
                                     + Adicionar imagem
-                                    <input type="file" hidden @change="adicionar_imagem" />
+                                    <input type="file" hidden @change="adicionar_imagem" multiple />
                                 </label>
                             </div>
                         </div>
@@ -122,7 +137,15 @@ function excluir_produto() {
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Valor</label>
-                        <input type="number" class="form-control" v-model="produto_edicao.valor" :disabled="!modo_edicao" />
+                        <input
+                            type="number"
+                            class="form-control"
+                            v-model="produto_edicao.valor"
+                            :disabled="!modo_edicao"
+                            min="0.01"
+                            max="99999.99"
+                            step="0.01"
+                        />
                     </div>
 
                     <p class="card-text">

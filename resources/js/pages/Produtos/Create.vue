@@ -27,6 +27,18 @@ function remove_image(index) {
 }
 
 function submit() {
+    const valor_num = parseFloat(form.valor.toString());
+
+    if (isNaN(valor_num) || valor_num <= 0) {
+        alert('O valor do produto deve ser maior que zero.');
+        return;
+    }
+
+    if (valor_num > 99999.99) {
+        alert('O valor do produto é muito alto. Máximo permitido: R$99.999,99.');
+        return;
+    }
+
     form.post(route('produtos.store'), {
         forceFormData: true,
         onSuccess: () => {
@@ -54,7 +66,7 @@ function submit() {
 
                 <div>
                     <label class="mb-1 block font-semibold">Valor (R$)</label>
-                    <input v-model="form.valor" type="number" step="0.01" class="w-full rounded border p-2" required />
+                    <input v-model="form.valor" type="number" step="0.01" min="0.01"  max="99999.99" class="w-full rounded border p-2" required />
                 </div>
 
                 <div class="md:col-span-2">
@@ -64,7 +76,14 @@ function submit() {
 
                 <div class="md:col-span-2">
                     <label class="mb-1 block font-semibold">Imagens</label>
-                    <input type="file" class="w-full rounded border p-2" multiple @change="get_imagens_input" accept=".jpg, .jpeg, image/jpeg" required/>
+                    <input
+                        type="file"
+                        class="w-full rounded border p-2"
+                        multiple
+                        @change="get_imagens_input"
+                        accept=".jpg, .jpeg, image/jpeg"
+                        required
+                    />
                     <div v-if="preview_urls.length" class="mt-4 flex flex-wrap gap-4">
                         <div v-for="(url, index) in preview_urls" :key="index" class="relative">
                             <img :src="url" class="h-24 rounded shadow" />
