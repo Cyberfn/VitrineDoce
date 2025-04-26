@@ -1,5 +1,0 @@
-const Ziggy = {"url":"http:\/\/localhost","port":null,"defaults":{},"routes":{"mapa":{"uri":"mapa","methods":["GET","HEAD"]},"confeitarias.index":{"uri":"confeitarias","methods":["GET","HEAD"]},"confeitarias.create":{"uri":"confeitarias\/create","methods":["GET","HEAD"]},"confeitarias.store":{"uri":"confeitarias","methods":["POST"]},"confeitarias.update":{"uri":"confeitarias\/{id}","methods":["PUT"],"parameters":["id"]},"confeitarias.destroy":{"uri":"confeitarias\/{id}","methods":["DELETE"],"parameters":["id"]},"produtos.index":{"uri":"produtos","methods":["GET","HEAD"]},"produtos.create":{"uri":"produtos\/create","methods":["GET","HEAD"]},"produtos.store":{"uri":"produtos","methods":["POST"]},"produtos.update":{"uri":"produtos\/{id}","methods":["PUT"],"parameters":["id"]},"produtos.excluir":{"uri":"produtos\/{id}","methods":["DELETE"],"parameters":["id"]},"storage.local":{"uri":"storage\/{path}","methods":["GET","HEAD"],"wheres":{"path":".*"},"parameters":["path"]}}};
-if (typeof window !== 'undefined' && typeof window.Ziggy !== 'undefined') {
-  Object.assign(Ziggy.routes, window.Ziggy.routes);
-}
-export { Ziggy };
