@@ -11,8 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/mapa', function () {
-    $confeitarias = Confeitaria::all();
-    return Inertia::render('Mapa', ['confeitarias' => $confeitarias]);
+    return Inertia::render('Mapa', ['confeitarias' => Confeitaria::all()]);
 })->name('mapa');
 
 // Rotas de Confeitarias
